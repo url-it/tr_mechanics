@@ -207,6 +207,17 @@ def fill_gui_params(config_file):
     user_tab.fill_gui(xml_root)
 
 
+def run_done_func_colab(s, rdir):
+    global run_button
+    with debug_view:
+        print('run_done_func: results in', rdir)
+    
+    sub.update(rdir)
+    run_button.description = "Run"
+    run_button.button_style='success'
+
+
+
 def run_done_func(s, rdir):
     # with debug_view:
     #     print('run_done_func: results in', rdir)
@@ -341,8 +352,10 @@ def run_button_cb(s):
     # sub.update_params(config_tab)
     sub.update(tdir)
 
-    subprocess.Popen(["../bin/myproj", "config.xml"])
-
+    run_button.description = "WAIT..."
+    subprocess.run(["../bin/myproj", "config.xml"])
+    sub.max_frames.value = int(config_tab.tmax.value / config_tab.svg_interval.value)    # 42
+    run_button.description = "Run"
 
 #-------------------------------------------------
 if nanoHUB_flag:
@@ -356,7 +369,7 @@ else:
     # if (hublib_flag):
     if False:
         run_button = RunCommand(start_func=run_sim_func,
-                            done_func=run_done_func,
+                            done_func=run_done_func_colab,
                             cachename=None,
                             showcache=False,
                             outcb=outcb)  
