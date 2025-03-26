@@ -215,7 +215,7 @@ def run_done_func_colab(s, rdir):
     sub.update(rdir)
     run_button.description = "Run"
     run_button.button_style='success'
-
+    sub.running_message.layout.display = 'none'
 
 
 def run_done_func(s, rdir):
@@ -241,6 +241,7 @@ def run_done_func(s, rdir):
 
     # sub.update_dropdown_fields("data")   # WARNING: fill in the substrate field(s)
 
+    sub.running_message.layout.display = 'none'
     # and update visualizations
     # svg.update(rdir)
     sub.update(rdir)
@@ -329,6 +330,7 @@ def run_button_cb(s):
 #    new_config_file = full_xml_filename
     # print("new_config_file = ", new_config_file)
 #    write_config_file(new_config_file)
+    sub.running_message.layout.display = 'block'
 
     # make sure we are where we started
     os.chdir(homedir)
@@ -356,6 +358,8 @@ def run_button_cb(s):
     subprocess.run(["../bin/myproj", "config.xml"])
     sub.max_frames.value = int(config_tab.tmax.value / config_tab.svg_interval.value)    # 42
     run_button.description = "Run"
+    sub.running_message.layout.display = 'none' 
+
 
 #-------------------------------------------------
 if nanoHUB_flag:
