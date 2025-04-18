@@ -1189,7 +1189,7 @@ class SubstrateTab(object):
 
 
         # Now plot the cells (possibly on top of the substrate)
-        if (self.cells_toggle.value or force_plot):
+        if (self.cells_toggle.value):
             if (not self.substrates_toggle.value):
                 # self.fig = plt.figure(figsize=(12, 12))
                 self.fig = plt.figure(figsize=(self.figsize_width_svg, self.figsize_height_svg))
