@@ -324,6 +324,18 @@ def outcb(s):
         sub.update()
     return s
 
+def find(name, path):
+    for root, dirs, files in os.walk(path):
+        if name in files:
+            return os.path.join(root, name)
+        
+myprojPath = find("myproj", os.getcwd())
+if myprojPath:
+    subprocess.run(["chmod", "+x", myprojPath], check=True)
+    print(f"Executable permissions granted for: {myprojPath}")
+else:
+    print("Error: 'myproj' file not found in the specified path.")
+
 
 # Callback for the ("dumb") 'Run' button (without hublib.ui)
 def run_button_cb(s):
@@ -362,7 +374,8 @@ def run_button_cb(s):
         sub.update(tdir)
 
         run_button.description = "WAIT..."
-        process = subprocess.Popen(["../bin/myproj", "config.xml"],
+        path = "/content/tr_mechanics/bin/myproj"
+        process = subprocess.Popen([path, "config.xml"],
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE,
                                    universal_newlines=True)
@@ -433,7 +446,7 @@ if False:
     fill_gui_params(read_config.options['DEFAULT'])
 else:
     top_row = widgets.HBox(children=[tool_title])
-    gui = widgets.VBox(children=[top_row, tabs, acc, run_button])
+    gui = widgets.VBox(children=[top_row, tabs, acc,run_button])
     fill_gui_params("data/PhysiCell_settings.xml")
 
 
