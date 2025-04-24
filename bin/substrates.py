@@ -1226,6 +1226,7 @@ class SubstrateTab(object):
             self.fig.savefig(png_file)
             plt.close(self.fig)
         self.png_frame = 0
+        plt.close('all')
 
     #---------------------------------------------------------------------------
     # def plot_plots(self, frame):
