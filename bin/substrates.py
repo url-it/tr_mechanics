@@ -1198,7 +1198,7 @@ class SubstrateTab(object):
             # print('plot_svg with frame=',self.svg_frame)
             self.plot_svg(self.svg_frame)
         
-        if (force_plot == False):
+        if (force_plot == True):
             plt.show()
 
 
