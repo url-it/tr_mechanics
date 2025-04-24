@@ -1197,6 +1197,9 @@ class SubstrateTab(object):
             self.svg_frame = frame
             # print('plot_svg with frame=',self.svg_frame)
             self.plot_svg(self.svg_frame)
+        
+        if (force_plot == False):
+            plt.show()
 
 
         # plt.subplot(grid[2, 0])
@@ -1213,6 +1216,7 @@ class SubstrateTab(object):
         # oxy_ax = self.fig.add_subplot(grid[3:4, 0:1])  # nrows, ncols
         # x = np.linspace(0, 500)
         # oxy_ax.plot(x, 300*np.sin(x))
+        
     def save_png(self):
         for frame in range(self.max_frames.value):
             
