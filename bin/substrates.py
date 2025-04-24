@@ -1065,7 +1065,7 @@ class SubstrateTab(object):
 
     #        if not os.path.isfile(fullname):
             if not os.path.isfile(full_fname):
-                print("Once output files are generated, click the slider.")  # No:  output00000000_microenvironment0.mat
+                # print("Once output files are generated, click the slider.")  # No:  output00000000_microenvironment0.mat
                 return
 
     #        tree = ET.parse(xml_fname)
@@ -1198,7 +1198,7 @@ class SubstrateTab(object):
             # print('plot_svg with frame=',self.svg_frame)
             self.plot_svg(self.svg_frame)
         
-        if (force_plot == True):
+        if not force_plot:
             plt.show()
 
 
