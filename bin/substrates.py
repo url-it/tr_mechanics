@@ -586,6 +586,7 @@ class SubstrateTab(object):
             for f in glob.glob(file_str):
                 myzip.write(f, os.path.basename(f))   # 2nd arg avoids full filename path in the archive
 
+        plt.ion()
         if self.colab_flag:
             files.download('svg.zip')
 
